@@ -273,9 +273,9 @@ class Aad(object):
             # logger.debug(to_dense_mat(x_tau))
 
         if opts.prior_influence == PRIOR_INFLUENCE_ADAPTIVE:
-            prior_influence = 1. / max(1., 0. if hf is None else len(hf))
+            prior_influence = opts.prior_influence_value / max(1., 0. if hf is None else len(hf))
         elif opts.prior_influence == PRIOR_INFLUENCE_FIXED:
-            prior_influence = 1.
+            prior_influence = opts.prior_influence_value
         else:
             raise ValueError("Invalid prior_influence specified: %d" % opts.prior_influence)
 

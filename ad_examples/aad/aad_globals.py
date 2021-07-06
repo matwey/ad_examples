@@ -207,6 +207,8 @@ def get_aad_option_list():
                              "is used as prior when --withprior is specified.")
     parser.add_argument("--prior_influence", action="store", type=int, default=PRIOR_INFLUENCE_FIXED,
                         help="Whether to keep the prior's influence fixed or decrease it as more data is labeled.")
+    parser.add_argument("--prior_influence_value", action="store", type=float, default=1.0,
+                        help="Value for prior's influence coefficient (default is 1.0)")
     parser.add_argument("--tau_score_type", action="store", type=int, default=TAU_SCORE_VARIABLE,
                         help="0 - No tau-score hinge loss, " +
                              "1 - Tau-score computed with each iteration, " +
@@ -457,6 +459,7 @@ class AadOpts(object):
         self.withprior = args.withprior  # whether to include prior in loss
         self.unifprior = args.unifprior
         self.prior_influence = args.prior_influence
+        self.prior_influence_value = args.prior_influence_value
         self.priorsigma2 = args.sigma2  # 0.2, #0.5, #0.1,
         self.init = args.init
         self.single_inst_feedback = False
